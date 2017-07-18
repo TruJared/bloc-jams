@@ -30,6 +30,22 @@
      ]
  };
 
+ // Third Example Album
+ var albumThird = {
+     title: 'Third and Three',
+     artist: '33 and The One Thirds',
+     label: 'Math Core',
+     year: '2018',
+     albumArtUrl: 'assets/images/album_covers/17.png',
+     songs: [
+         { title: 'Fractions Per Second', duration: '0:33' },
+         { title: 'We Are 33', duration: '0:33' },
+         { title: '33 Doors Down', duration: '0:33'},
+         { title: '33 || 66', duration: '0:33' },
+         { title: 'ee', duration: '0:33'}
+     ]
+ };
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -68,3 +84,10 @@
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
 };
+
+// my answer
+var albumList = [albumPicasso, albumMarconi, albumThird]
+document.querySelector(".album-cover-art").addEventListener("click", function() {
+  albumList.push(albumList.shift()); //cycles though albumList
+  setCurrentAlbum(albumList[0]);
+});

@@ -49,6 +49,7 @@ body.album {
 
 .song-item-number {
   width: 5%;
+  min-width: 30px; /* retains shape of song rows following mouseleave event */
 }
 
 .song-item-title {
@@ -57,7 +58,7 @@ body.album {
 
 .song-item-duration {
   width: 5%;
-  min-width: 30px; /* retains shape of song rows following mouseleave event */
+  
 }
 .album-song-button {
      text-align: center;

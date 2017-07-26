@@ -128,8 +128,13 @@ var findParentByClassName = function(element, targetClass) {
     while (currentParent.className !== targetClass && currentParent.className !== null) {
       currentParent = currentParent.parentElement;
     }
-    return currentParent;
-  }
+
+  } else if (currentParent != element.parentElement) {
+    console.log("No parent found");
+  } else {
+    console.log("No parent found with that class name")
+  };
+  return currentParent;
 };
 
 // used to alwasy return the song item

@@ -124,17 +124,24 @@ var setCurrentAlbum = function(album) {
 // find parent with specified class name
 var findParentByClassName = function(element, targetClass) {
   if (element) {
-    var currentParent = element.parentElement;
-    while (currentParent.className !== targetClass && currentParent.className !== null) {
-      currentParent = currentParent.parentElement;
+    if (element.parentElement === undefined) {
+      console.log("No parent found");
+      return;
     }
-
-  } else if (currentParent != element.parentElement) {
-    console.log("No parent found");
-  } else {
-    console.log("No parent found with that class name")
-  };
-  return currentParent;
+    else {
+      var currentParent = element.parentElement;
+      while (currentParent.className !== targetClass && currentParent.className !== null) {
+        currentParent = currentParent.parentElement;
+      }
+      if (currentParent.className == targetClass) {
+        return currentParent;
+      }
+      else {
+        console.log("No parent found with that class name")
+        return;
+      };
+    }
+  }
 };
 
 // used to alwasy return the song item

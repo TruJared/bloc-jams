@@ -127,7 +127,7 @@ $(document).ready(function() {
 });
 
 // manipulate play/pause by using player bar
-var togglePlayFromPlayerBar = function() {
+togglePlayFromPlayerBar = function() {
     if (currentSoundFile.isPaused()) {
         $(this).html(playerBarPauseButton);
         $('.album-song-button').html(pauseButtonTemplate);
@@ -182,11 +182,10 @@ var nextSong = function() {
     // Save the last song number before changing it
     var lastSongNumber = currentlyPlayingSongNumber;
 
-    // Set a new current song
-        currentSoundFile.play()
-
     setSong(currentSongIndex + 1);
     currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
+    // Set a new current song
+    currentSoundFile.play();
 
     // Update the Player Bar information
     updatePlayerBarSong();
@@ -210,11 +209,12 @@ var previousSong = function() {
     // Save the last song number before changing it
     var lastSongNumber = currentlyPlayingSongNumber;
 
-    // Set a new current song
-        currentSoundFile.play()
+
 
     setSong(currentSongIndex + 1);
     currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
+        // Set a new current song
+    currentSoundFile.play();
 
     // Update the Player Bar information
     updatePlayerBarSong();

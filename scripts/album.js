@@ -101,6 +101,7 @@ var updateSeekBarWhileSongPlays = function() {
             var $seekBar = $('.seek-control .seek-bar');
 
             updateSeekPercentage($seekBar, seekBarFillRatio);
+            setCurrentTimeInPlayerBar(this.getTime());
         });
     }
 };
@@ -163,9 +164,29 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
-
+    setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
 };
 
+// convert seconds.milliseconds to minutes.seconds
+var filterTimeCode = function(timeInSeconds){
+    var minutes = parseFloat(Math.floor(timeInSeconds / 60));
+    var seconds = parseInt(timeInSeconds - minutes * 60);
+
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+
+    return minutes + ":" + seconds;
+};
+
+// manipulate time on player bar
+var setCurrentTimeInPlayerBar = function(currentTime) {
+  $('.current-time').text(filterTimeCode(currentTime));
+};
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+  $('.total-time').text(filterTimeCode(totalTime));
+};
 
 // variables for button templates
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
@@ -191,6 +212,7 @@ $(document).ready(function() {
     $nextButton.click(nextSong);
     $playPauseButton.click(togglePlayFromPlayerBar);
 });
+
 
 // manipulate play/pause by using player bar
 var togglePlayFromPlayerBar = function() {

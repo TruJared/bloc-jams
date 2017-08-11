@@ -72,13 +72,13 @@
 
   .seek-control .current-time {
     position: absolute;
-    top: 0.5rem;
+    top: 1.5rem;
   }
 
   .seek-control .total-time {
     position: absolute;
     right: 0;
-    top: 0.5rem;
+    top: 1.5rem;
   }
 
   .seek-bar {

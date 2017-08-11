@@ -74,7 +74,6 @@ var createSongRow = function(songNumber, songName, songLength) {
 
 var setCurrentAlbum = function(album) {
 
-
     currentAlbum = album;
     var $albumTitle = $('.album-view-title');
     var $albumArtist = $('.album-view-artist');
@@ -126,10 +125,7 @@ var setupSeekBars = function() {
 
         if ($(this).parent().attr('class') == 'seek-control') {
             seek(seekBarFillRatio * currentSoundFile.getDuration());
-             // for testing
-            console.log('seek ' + seekBarFillRatio);
-            console.log('duration ' + currentSoundFile.getDuration());
-            console.log(typeof(seekBarFillRatio) + ' ' + typeof(currentSoundFile.getDuration()) + ' both ' + (seekBarFillRatio * currentSoundFile.getDuration()));
+
         } else {
             setVolume(seekBarFillRatio * 100);
         }
@@ -167,7 +163,9 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
+
 };
+
 
 // variables for button templates
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
@@ -195,7 +193,7 @@ $(document).ready(function() {
 });
 
 // manipulate play/pause by using player bar
-togglePlayFromPlayerBar = function() {
+var togglePlayFromPlayerBar = function() {
     if (currentSoundFile.isPaused()) {
         $(this).html(playerBarPauseButton);
         $('.album-song-button').html(pauseButtonTemplate);
@@ -252,9 +250,9 @@ var nextSong = function() {
     // Save the last song number before changing it
     var lastSongNumber = currentlyPlayingSongNumber;
 
+    // Set a new current song
     setSong(currentSongIndex + 1);
     currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
-    // Set a new current song
     currentSoundFile.play();
     updateSeekBarWhileSongPlays();
     // Update the Player Bar information
